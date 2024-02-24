@@ -2,11 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Task2 = () => {
   const [username, setUsername] = useState("");
   const [userData, setUserData] = useState("");
+  const router = useRouter();
   
   const handleSearch = async () => {
     try {
@@ -15,11 +17,12 @@ const Task2 = () => {
       const data = await res.json();
       console.log(data);
       setUserData(data);
+      // moving to task3 with username
+      
     } catch (error) {
       console.error("Error searching user:", error);
     }
   };
-
   const renderUserInformation = () => {
     if (!userData) return null;
 
@@ -41,7 +44,7 @@ const Task2 = () => {
 
   const renderPreferences = (prefs :string) => {
     return (
-      <div className="flex p-5">
+      <div className="flex flex-wrap p-5 max-w-full overflow-auto">
         {Object.entries(prefs).map(([prefKey, prefValue]) => (
           <div key={prefKey} className="bg-yellow-200 m-2 rounded-lg">
             {renderKeyValue(prefKey, prefValue)}
@@ -53,12 +56,13 @@ const Task2 = () => {
 
   const renderKeyValue = (key: string , value : string) => {
     return (
-      <p key={key} className="m-2">
+      <div key={key} className="m-2">
         {key}: {typeof value === "object" ? renderPreferences(value as any) : value}
-      </p>
+      </div>
     );
   };
 
+  
   return (
     <div className="w-full">
       <div className="grid justify-items-center rounded-full">
@@ -82,11 +86,11 @@ const Task2 = () => {
               </Button>
             </div>
           </div>
-          <Link href="/task3">
-            <div>
-              <Button className="rounded-full m-8 p-8 text-xl">
-                Move to Task 3
-              </Button>
+          <Link href={{ pathname: "/task3", query: { username: username} }}>
+        <div>
+          <Button className="rounded-full m-8 p-8 text-xl"  onClick={()=> router.push(`/task3?username=${username}`)}>
+            Move to Task 3
+          </Button>
             </div>
           </Link>
         </div>
