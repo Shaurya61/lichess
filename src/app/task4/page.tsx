@@ -8,7 +8,15 @@ import Link from "next/link";
 const Task4 = () => {
   const router = useRouter();
   const [userData, setUserData] = useState<GameData[]>([]);
-  const searchParams = useSearchParams();
+  const useSafeSearchParams = () => {
+    try {
+      return useSearchParams();
+    } catch (error) {
+      console.error("Error using search params:", error);
+      return new URLSearchParams(); // return an empty URLSearchParams instance
+    }
+  };
+  const searchParams = useSafeSearchParams();
   const username = searchParams.get("username");
 
   useEffect(() => {
