@@ -8,7 +8,15 @@ import { useRouter } from "next/navigation";
 
 const Task3 = () => {
   const [userData, setUserData] = useState<GameData[]>([]);
-  const searchParams = useSearchParams();
+  const useSafeSearchParams = () => {
+    try {
+      return useSearchParams();
+    } catch (error) {
+      console.error("Error using search params:", error);
+      return new URLSearchParams(); // return an empty URLSearchParams instance
+    }
+  };
+  const searchParams = useSafeSearchParams();
   const username = searchParams.get("username");
 
   const router = useRouter();
