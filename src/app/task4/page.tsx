@@ -65,7 +65,7 @@ const Task4 = () => {
       </div>
         ) : (<div className="w-full flex items-center justify-center text-2xl font-semibold">No Data Available</div>)}
       </div>
-      <Link href={`/task3`}>
+      <Link href={`/task3`} prefetch={false}>
         <div className="ml-4 mt-2 text-center">
         <Button className="rounded-full p-7 text-xl" onClick={() => router.back()}>Back to Task 3</Button>
         </div>

@@ -118,7 +118,7 @@ const Task3 = () => {
         </div>
         ) : (<div className="w-full flex items-center justify-center text-2xl font-semibold">No Data Available</div>)}
       </div>
-      <Link href={{ pathname: "/task4", query: { username: username } }}>
+      <Link href={{ pathname: "/task4", query: { username: username } }} prefetch={false}>
         <div className="ml-4 mt-2 text-center">
           <Button
             className="rounded-full p-8 text-xl"

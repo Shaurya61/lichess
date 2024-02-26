@@ -91,7 +91,7 @@ const Task2 = () => {
               </Button>
             </div>
           </div>
-          <Link href={{ pathname: "/task3", query: { username: username } }}>
+          <Link href={{ pathname: "/task3", query: { username: username } }} prefetch={false}>
             <div>
               <Button
                 className="rounded-full m-8 p-8 text-xl"
