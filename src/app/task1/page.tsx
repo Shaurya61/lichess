@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 const Task1 = () => {
   /* Creating a HandleSubmit which Fetches api  and returns response*/
-  const handleSubmit =  async () => {
+  const handleSubmit = async () => {
     const res = await fetch(`https://lichess.org/api/status`);
     if (res.ok) {
       alert("API is Working");
@@ -23,8 +23,21 @@ const Task1 = () => {
         <h2 className="font-medium text-xl mb-4">
           Click the button Below to check the status of API
         </h2>
-        <div><Button className="rounded-full m-8 p-8 text-xl" onClick={handleSubmit}>Check Status</Button></div>
-        <Link href="/task2"><div><Button className="rounded-full m-8 p-8 text-xl">Move to Task 2</Button></div></Link>
+        <div>
+          <Button
+            className="rounded-full m-8 p-8 text-xl"
+            onClick={handleSubmit}
+          >
+            Check Status
+          </Button>
+        </div>
+        <Link href="/task2">
+          <div>
+            <Button className="rounded-full m-8 p-8 text-xl">
+              Move to Task 2
+            </Button>
+          </div>
+        </Link>
       </div>
     </div>
   );
