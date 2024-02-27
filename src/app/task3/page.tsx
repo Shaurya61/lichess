@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 const Task3 = () => {
   const [userData, setUserData] = useState<GameData[]>([]);
+  const [mounted,setMounted] = useState(false);
   const useSafeSearchParams = () => {
     try {
       return useSearchParams();
@@ -16,6 +17,7 @@ const Task3 = () => {
       return new URLSearchParams(); // return an empty URLSearchParams instance
     }
   };
+  
   const searchParams = useSafeSearchParams();
   const username = searchParams.get("username");
 
@@ -36,6 +38,10 @@ const Task3 = () => {
     return `${formattedMonth}/${formattedDay}/${year} ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   };
   // Fetch user data by the given username
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   useEffect(() => {
     const fetchGameData = async () => {
       try {
@@ -65,6 +71,12 @@ const Task3 = () => {
     }
   }, [username]);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null; // return this null to avoid hydration errors
+  }
   return (
     <div className="m-8">
       <div className="bg-green-200 rounded-lg p-8 m-4">
