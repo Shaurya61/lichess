@@ -87,9 +87,9 @@ const Task3 = () => {
           </h2>
         </div>
       </div>
-      <div className="p-8 bg-blue-200 rounded-lg m-4 flex flex-wrap justify-between">
+      <div>
         { userData && userData.length  > 0 ? (
-        <div>
+        <div className="p-8 bg-blue-200 rounded-lg m-4 flex flex-wrap justify-between">
         {userData.map((game, index) => (
           <div key={index} className="p-4 bg-yellow-200 rounded-lg m-4 w-4/12">
             {game.players.white.user &&
