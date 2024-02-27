@@ -56,9 +56,9 @@ const Task4 = () => {
           Displaying Game Moves of {username}
         </h2>
       </div>
-      <div className="p-8 bg-blue-200 rounded-lg m-4 flex flex-wrap justify-between">
-        {userData && userData.length === 0 ? ( 
-        <div>
+      <div>
+        {userData && userData.length >0 ? ( 
+        <div className="p-8 bg-blue-200 rounded-lg m-4 flex flex-wrap justify-between">
         {userData.map((game, index) => (
           <GameCard key={index} game={game} username={username as string} />
         ))}
